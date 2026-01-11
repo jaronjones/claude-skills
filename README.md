@@ -1,228 +1,227 @@
-# Claude Code Skill Creator - Setup Instructions
+# Claude Skills Library
 
-## What You've Got
+A curated collection of Claude Code skills for development, automation, and productivity.
 
-A complete skill creation toolkit with:
-- ✅ Interactive wizard for guided skill creation
-- ✅ Quick template copy tool
-- ✅ Automatic validation
-- ✅ Three professional templates
-- ✅ GitHub Actions for CI/CD
-- ✅ Complete documentation
-- ✅ Example skills
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![Skills](https://img.shields.io/badge/skills-0-brightgreen.svg)](skills/)
 
-## Quick Start (2 minutes)
+## 📚 Available Skills
 
-### 1. Save to Your Repository
+<!-- This section will auto-populate as you add skills -->
+
+### Development
+- *Coming soon*
+
+### DevOps
+- *Coming soon*
+
+### Documentation
+- *Coming soon*
+
+### Automation
+- *Coming soon*
+
+## 🚀 Quick Start
+
+### Using a Skill
+
+1. Browse the [`skills/`](skills/) directory
+2. Find a skill that matches your needs
+3. Read the skill's `SKILL.md` for instructions
+4. Follow the step-by-step guide
+
+### Example
 
 ```bash
-# Navigate to where you want the repo
-cd ~/projects
+# Navigate to a skill directory
+cd skills/git-commit-formatter
 
-# If you downloaded the files
-mv /path/to/claude-code-skill-creator ./
+# Read the instructions
+cat SKILL.md
 
-# Or clone from GitHub after you push it
-# git clone https://github.com/YOUR_USERNAME/claude-code-skill-creator.git
+# Follow the skill's steps
+```
 
+## 📖 Repository Structure
+
+```
+claude-skills-library/
+├── README.md                 # This file
+├── LICENSE                   # Apache 2.0 License
+├── CONTRIBUTING.md           # How to contribute
+├── SKILL_TEMPLATE.md         # Template for new skills
+│
+├── skills/                   # All skills organized by category
+│   ├── development/
+│   │   └── skill-name/
+│   │       ├── SKILL.md      # Skill documentation
+│   │       ├── scripts/      # Optional scripts
+│   │       └── config/       # Optional config files
+│   ├── devops/
+│   ├── documentation/
+│   └── automation/
+│
+├── docs/                     # Additional documentation
+│   ├── SKILL_GUIDELINES.md   # Writing guidelines
+│   └── CATEGORIES.md         # Category definitions
+│
+└── .github/                  # GitHub configuration
+    ├── workflows/            # CI/CD automation
+    └── ISSUE_TEMPLATE/       # Issue templates
+```
+
+## 🎯 Skill Categories
+
+Skills are organized into the following categories:
+
+- **development/** - Coding, testing, debugging tools
+- **devops/** - Deployment, infrastructure, CI/CD
+- **documentation/** - Writing, formatting, generation
+- **automation/** - Scripting, task automation, workflows
+
+See [docs/CATEGORIES.md](docs/CATEGORIES.md) for detailed category definitions.
+
+## ✨ Contributing
+
+We welcome contributions! Here's how to add a skill:
+
+### Quick Contribution
+
+1. **Fork this repository**
+2. **Create a new skill directory**:
+   ```bash
+   mkdir -p skills/category-name/your-skill-name
+   ```
+3. **Copy the template**:
+   ```bash
+   cp SKILL_TEMPLATE.md skills/category-name/your-skill-name/SKILL.md
+   ```
+4. **Fill in the skill documentation**
+5. **Add any scripts or config files**
+6. **Test your skill thoroughly**
+7. **Submit a pull request**
+
+### Detailed Guide
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for:
+- Skill writing guidelines
+- Quality standards
+- Review process
+- Style guide
+
+## 📋 Skill Requirements
+
+Every skill must include:
+
+- [ ] **SKILL.md** - Complete documentation following the template
+- [ ] **Clear category** - Placed in the correct category folder
+- [ ] **Working examples** - Tested and verified
+- [ ] **Prerequisites** - List all requirements
+- [ ] **No sensitive data** - No API keys, passwords, etc.
+
+Optional but recommended:
+- [ ] **Scripts** - Automation helpers in `scripts/` folder
+- [ ] **Config examples** - Sample configs in `config/` folder
+- [ ] **Screenshots** - Visual aids where helpful
+- [ ] **Tests** - Validation scripts
+
+## 🔍 Finding Skills
+
+### By Category
+Browse the `skills/` directory by category.
+
+### By Search
+Use GitHub's search or:
+```bash
+# Search skill names
+find skills -name "SKILL.md" | xargs grep -l "keyword"
+
+# Search skill content
+grep -r "keyword" skills/*/SKILL.md
+```
+
+### By Tags
+Check skill metadata for tags (coming soon).
+
+## 🛠️ Using the Skill Creator Tool
+
+To create new skills more easily, use our skill-creator toolkit:
+
+```bash
+# Clone the skill creator
+git clone https://github.com/YOUR_USERNAME/claude-code-skill-creator.git
+
+# Create a new skill
 cd claude-code-skill-creator
-```
-
-### 2. Make Scripts Executable
-
-```bash
-chmod +x scripts/*.sh
-```
-
-### 3. Create Your First Skill
-
-```bash
 ./scripts/create-skill.sh
+
+# Move to this repo
+mv your-skill-name ../claude-skills-library/skills/category/
 ```
 
-Answer the prompts and you're done! The wizard will:
-- Guide you through naming and describing your skill
-- Let you choose a template
-- Auto-generate the files
-- Validate everything
-- Offer to open your editor
+## ✅ Validation
 
-## What's Next?
+Before submitting, validate your skill:
 
-### For Your Team
-
-1. **Initialize Git repository** (if not already)
-   ```bash
-   git init
-   git add .
-   git commit -m "feat: add skill-creator toolkit"
-   ```
-
-2. **Push to GitHub**
-   ```bash
-   git remote add origin https://github.com/YOUR_USERNAME/claude-code-skill-creator.git
-   git push -u origin main
-   ```
-
-3. **Update README badges**
-   - Edit `README.md`
-   - Replace `YOUR_USERNAME` with your GitHub username
-
-4. **Enable GitHub Actions**
-   - Go to repository Settings → Actions
-   - Enable workflows
-
-### Creating Skills
-
-**Interactive (recommended for first time):**
 ```bash
-./scripts/create-skill.sh
+# If using skill-creator toolkit
+/path/to/skill-creator/scripts/validate-skill.sh skills/category/your-skill
+
+# Otherwise, manually check:
+# - SKILL.md exists and is complete
+# - No TODO or placeholder text
+# - Examples are tested
+# - License is Apache 2.0
 ```
 
-**Quick copy (for experienced users):**
-```bash
-./scripts/copy-template.sh basic my-skill-name
-```
+## 📜 License
 
-**Validate a skill:**
-```bash
-./scripts/validate-skill.sh path/to/skill
-```
+All skills in this repository are licensed under the Apache License 2.0.
 
-## File Structure
+This means you can:
+- ✅ Use commercially
+- ✅ Modify freely
+- ✅ Distribute
+- ✅ Sublicense
+- ❌ Hold liable
+- ❌ Use trademark
 
-```
-claude-code-skill-creator/
-├── SKILL.md                 # The meta-skill (documents this tool)
-├── README.md                # Main documentation
-├── LICENSE                  # Apache 2.0
-├── CONTRIBUTING.md          # Contribution guide
-├── CHANGELOG.md             # Version history
-│
-├── scripts/                 # Creation & validation tools
-│   ├── create-skill.sh      # Interactive wizard ⭐
-│   ├── copy-template.sh     # Quick copy
-│   ├── validate-skill.sh    # Validation
-│   └── lib/                 # Helper functions
-│
-├── templates/               # Skill templates
-│   ├── basic/               # Simple documentation
-│   ├── with-scripts/        # Includes scripts/
-│   └── with-config/         # Includes config/
-│
-├── examples/                # Example skills
-│   └── git-commit-formatter/ # Complete example
-│
-├── docs/                    # Documentation
-│   ├── QUICKSTART.md        # 5-minute guide
-│   ├── SKILL_FORMAT.md      # Format spec
-│   └── BEST_PRACTICES.md    # Writing guide
-│
-└── .github/                 # CI/CD
-    ├── workflows/           # GitHub Actions
-    └── ISSUE_TEMPLATE/      # Issue templates
-```
+See [LICENSE](LICENSE) for the full license text.
 
-## Templates Explained
+## 🙏 Contributors
 
-### Basic
-- Just SKILL.md + LICENSE
-- Perfect for documentation-only skills
-- Example: Process guides, checklists
+Thanks to all contributors who have shared their skills!
 
-### With-Scripts
-- Includes scripts/ directory
-- For automation and helper scripts
-- Example: Setup scripts, deployment tools
+<!-- Contributors will be automatically listed here -->
 
-### With-Config
-- Includes config/ directory
-- For configurable tools
-- Example: Templates with customization
+## 📞 Support
 
-## Testing the Toolkit
+- **Questions**: Open a [Discussion](https://github.com/YOUR_USERNAME/claude-skills-library/discussions)
+- **Issues**: Report [Issues](https://github.com/YOUR_USERNAME/claude-skills-library/issues)
+- **New Skills**: Submit a [Pull Request](https://github.com/YOUR_USERNAME/claude-skills-library/pulls)
 
-### 1. Test Validation
-```bash
-./scripts/validate-skill.sh examples/git-commit-formatter
-```
+## 🗺️ Roadmap
 
-Should show: ✓ Validation passed!
+- [ ] Reach 10 skills
+- [ ] Add skill search functionality
+- [ ] Create skill tags/metadata
+- [ ] Add automated testing
+- [ ] Build skill dependency tracking
+- [ ] Create web interface for browsing
 
-### 2. Test Template Copy
-```bash
-./scripts/copy-template.sh basic test-skill /tmp
-ls /tmp/test-skill
-```
+## 💡 Skill Ideas
 
-Should create SKILL.md and LICENSE
+Looking for inspiration? Check out our [skill ideas list](https://github.com/YOUR_USERNAME/claude-skills-library/issues?q=is%3Aissue+is%3Aopen+label%3Askill-idea).
 
-### 3. Test Wizard
-```bash
-./scripts/create-skill.sh
-```
+Or suggest your own by opening an issue!
 
-Follow the prompts to create a test skill
+## 📊 Stats
 
-## Customization
-
-### Add Your Own Templates
-
-1. Create new template directory:
-   ```bash
-   mkdir templates/my-template
-   ```
-
-2. Add SKILL.md.template and LICENSE
-
-3. Update scripts if needed
-
-### Customize Validation
-
-Edit `scripts/validate-skill.sh` to add your own checks
-
-### Add Team-Specific Docs
-
-- Add to `docs/`
-- Update README with team info
-- Customize CONTRIBUTING.md
-
-## Tips for Your Team
-
-1. **Start with examples** - Look at `examples/git-commit-formatter/`
-2. **Use the wizard first** - Learn the structure
-3. **Read best practices** - Check `docs/BEST_PRACTICES.md`
-4. **Validate often** - Run validator before committing
-5. **Share early** - Get feedback on draft skills
-
-## GitHub Actions
-
-Once pushed to GitHub, you get:
-
-- **PR Validation** - Auto-validates skills in pull requests
-- **Weekly Checks** - Validates all examples every Sunday
-- **Issue Creation** - Creates issues if validation fails
-
-To enable: Push to GitHub and actions will run automatically
-
-## Support
-
-- **Documentation**: Read `docs/` directory
-- **Examples**: Check `examples/` directory
-- **Issues**: Use GitHub issues
-- **Questions**: Open a discussion
-
-## Next Steps
-
-1. ✅ Test the wizard: `./scripts/create-skill.sh`
-2. ✅ Read QUICKSTART: `docs/QUICKSTART.md`
-3. ✅ Browse examples: `examples/`
-4. ✅ Create your first real skill
-5. ✅ Push to GitHub
-6. ✅ Share with your team
+- **Total Skills**: 0 (and growing!)
+- **Categories**: 4
+- **Contributors**: 1
+- **Last Updated**: 2026-01-11
 
 ---
 
-**Everything is Apache 2.0 licensed - free to use and modify!**
-
-Happy skill creating! 🚀
+**Start exploring skills in the [`skills/`](skills/) directory!** 🚀
