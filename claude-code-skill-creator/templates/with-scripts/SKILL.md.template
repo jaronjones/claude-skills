@@ -1,0 +1,133 @@
+# {{SKILL_NAME}}
+
+## Overview
+{{DESCRIPTION}}
+
+This skill includes helper scripts to automate common tasks.
+
+## When to Use This Skill
+{{WHEN_TO_USE}}
+
+## Prerequisites
+{{PREREQUISITES}}
+
+## Directory Structure
+```
+{{SKILL_NAME}}/
+├── SKILL.md           # This file
+├── LICENSE            # Apache 2.0 License
+└── scripts/
+    ├── setup.sh       # Initial setup script
+    ├── run.sh         # Main execution script
+    └── cleanup.sh     # Cleanup script
+```
+
+## Instructions
+
+### Step 1: Setup
+Run the setup script to prepare your environment:
+
+```bash
+./scripts/setup.sh
+```
+
+{{SETUP_DETAILS}}
+
+### Step 2: {{STEP_2_TITLE}}
+{{STEP_2_INSTRUCTIONS}}
+
+```bash
+./scripts/run.sh {{SCRIPT_ARGS}}
+```
+
+### Step 3: Cleanup (Optional)
+When finished, clean up temporary files:
+
+```bash
+./scripts/cleanup.sh
+```
+
+## Scripts Reference
+
+### setup.sh
+{{SETUP_SCRIPT_DESCRIPTION}}
+
+**Usage:**
+```bash
+./scripts/setup.sh [options]
+```
+
+**Options:**
+- {{OPTION_1}}
+- {{OPTION_2}}
+
+### run.sh
+{{RUN_SCRIPT_DESCRIPTION}}
+
+**Usage:**
+```bash
+./scripts/run.sh [arguments]
+```
+
+**Arguments:**
+- {{ARG_1}}
+- {{ARG_2}}
+
+### cleanup.sh
+{{CLEANUP_SCRIPT_DESCRIPTION}}
+
+## Examples
+
+### Example 1: {{EXAMPLE_1_TITLE}}
+{{EXAMPLE_1_DESCRIPTION}}
+
+```bash
+# Step 1: Setup
+./scripts/setup.sh
+
+# Step 2: Run
+./scripts/run.sh {{EXAMPLE_1_ARGS}}
+
+# Step 3: Cleanup
+./scripts/cleanup.sh
+```
+
+**Expected Output:**
+```
+{{EXAMPLE_1_OUTPUT}}
+```
+
+## Best Practices
+- {{BEST_PRACTICE_1}}
+- {{BEST_PRACTICE_2}}
+- Always run cleanup.sh when finished to avoid resource leaks
+
+## Common Issues
+
+### Script Permission Errors
+**Problem**: Scripts fail with "Permission denied"
+
+**Solution**: Make scripts executable:
+```bash
+chmod +x scripts/*.sh
+```
+
+### {{ISSUE_2_TITLE}}
+**Problem**: {{ISSUE_2_DESCRIPTION}}
+
+**Solution**: {{ISSUE_2_SOLUTION}}
+
+## License
+Copyright {{YEAR}} {{AUTHOR}}
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.

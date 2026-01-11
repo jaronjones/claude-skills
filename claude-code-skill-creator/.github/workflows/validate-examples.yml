@@ -1,0 +1,132 @@
+name: Validate Example Skills
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    # Run every Sunday at midnight UTC
+    - cron: '0 0 * * 0'
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  validate-all:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Validate all example skills
+        id: validate
+        run: |
+          chmod +x scripts/validate-skill.sh
+          
+          echo "Validating all example skills..."
+          echo ""
+          
+          FAILED=0
+          PASSED=0
+          FAILED_SKILLS=()
+          
+          # Find all SKILL.md files in examples/
+          if [ -d "examples" ]; then
+            for skill_dir in examples/*/; do
+              if [ -f "${skill_dir}SKILL.md" ]; then
+                echo "======================================"
+                echo "Validating: $skill_dir"
+                echo "======================================"
+                
+                if ./scripts/validate-skill.sh "$skill_dir"; then
+                  ((PASSED++))
+                else
+                  ((FAILED++))
+                  FAILED_SKILLS+=("$skill_dir")
+                fi
+                echo ""
+              fi
+            done
+          else
+            echo "No examples directory found"
+            exit 0
+          fi
+          
+          # Summary
+          echo "======================================"
+          echo "Validation Summary"
+          echo "======================================"
+          echo "Passed: $PASSED"
+          echo "Failed: $FAILED"
+          
+          if [ $FAILED -gt 0 ]; then
+            echo ""
+            echo "Failed skills:"
+            for skill in "${FAILED_SKILLS[@]}"; do
+              echo "  - $skill"
+            done
+            exit 1
+          fi
+          
+      - name: Validate templates
+        if: success() || failure()
+        run: |
+          chmod +x scripts/validate-skill.sh
+          
+          echo ""
+          echo "======================================"
+          echo "Validating Templates"
+          echo "======================================"
+          
+          FAILED=0
+          
+          # Templates have .template extension, so we check structure manually
+          for template_dir in templates/*/; do
+            echo ""
+            echo "Checking template: $template_dir"
+            
+            # Check for required files
+            if [ ! -f "${template_dir}SKILL.md.template" ] && [ ! -f "${template_dir}SKILL.md" ]; then
+              echo "✗ Missing SKILL.md.template"
+              ((FAILED++))
+            else
+              echo "✓ SKILL.md.template found"
+            fi
+            
+            if [ ! -f "${template_dir}LICENSE" ]; then
+              echo "✗ Missing LICENSE"
+              ((FAILED++))
+            else
+              echo "✓ LICENSE found"
+            fi
+          done
+          
+          if [ $FAILED -gt 0 ]; then
+            echo ""
+            echo "Template validation failed"
+            exit 1
+          fi
+          
+          echo ""
+          echo "✓ All templates are valid"
+          
+      - name: Create issue on failure
+        if: failure() && github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '🔴 Example Skill Validation Failed',
+              body: `### Validation Failure
+              
+              Automated validation of example skills has failed.
+              
+              **Workflow Run:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+              
+              **Triggered by:** Scheduled weekly check
+              
+              Please review the workflow logs for details.`,
+              labels: ['bug', 'validation', 'automated']
+            });
+            
+            console.log('Created issue:', issue.data.number);

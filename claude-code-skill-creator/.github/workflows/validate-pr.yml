@@ -1,0 +1,78 @@
+name: Validate Skill PR
+
+on:
+  pull_request:
+    paths:
+      - 'examples/**'
+      - 'templates/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Find changed skills
+        id: changed-files
+        uses: tj-actions/changed-files@v41
+        with:
+          files: |
+            examples/**/SKILL.md
+            templates/**/SKILL.md.template
+            
+      - name: Validate each changed skill
+        if: steps.changed-files.outputs.all_changed_files != ''
+        run: |
+          chmod +x scripts/validate-skill.sh
+          
+          echo "Changed files: ${{ steps.changed-files.outputs.all_changed_files }}"
+          
+          EXIT_CODE=0
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            skill_dir=$(dirname "$file")
+            echo ""
+            echo "======================================"
+            echo "Validating: $skill_dir"
+            echo "======================================"
+            
+            if ! ./scripts/validate-skill.sh "$skill_dir"; then
+              echo "::error file=$file::Skill validation failed"
+              EXIT_CODE=1
+            fi
+          done
+          
+          exit $EXIT_CODE
+          
+      - name: Check Apache 2.0 License
+        if: steps.changed-files.outputs.all_changed_files != ''
+        run: |
+          EXIT_CODE=0
+          
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            skill_dir=$(dirname "$file")
+            
+            if [ ! -f "$skill_dir/LICENSE" ]; then
+              echo "::error file=$skill_dir::Missing LICENSE file"
+              EXIT_CODE=1
+              continue
+            fi
+            
+            if ! grep -q "Apache License" "$skill_dir/LICENSE"; then
+              echo "::error file=$skill_dir/LICENSE::Must use Apache 2.0 License"
+              EXIT_CODE=1
+            fi
+          done
+          
+          exit $EXIT_CODE
+          
+      - name: Validation Summary
+        if: success()
+        run: |
+          echo "✓ All skills validated successfully!"
+          echo ""
+          echo "Changed skills:"
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "  - $(dirname $file)"
+          done

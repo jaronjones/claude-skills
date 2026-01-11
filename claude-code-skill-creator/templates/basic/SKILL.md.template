@@ -1,0 +1,78 @@
+# {{SKILL_NAME}}
+
+## Overview
+{{DESCRIPTION}}
+
+## When to Use This Skill
+{{WHEN_TO_USE}}
+
+## Prerequisites
+{{PREREQUISITES}}
+
+## Instructions
+
+### Step 1: {{STEP_1_TITLE}}
+{{STEP_1_INSTRUCTIONS}}
+
+### Step 2: {{STEP_2_TITLE}}
+{{STEP_2_INSTRUCTIONS}}
+
+### Step 3: {{STEP_3_TITLE}}
+{{STEP_3_INSTRUCTIONS}}
+
+## Examples
+
+### Example 1: {{EXAMPLE_1_TITLE}}
+{{EXAMPLE_1_DESCRIPTION}}
+
+```bash
+{{EXAMPLE_1_CODE}}
+```
+
+**Expected Output:**
+```
+{{EXAMPLE_1_OUTPUT}}
+```
+
+### Example 2: {{EXAMPLE_2_TITLE}}
+{{EXAMPLE_2_DESCRIPTION}}
+
+```bash
+{{EXAMPLE_2_CODE}}
+```
+
+## Best Practices
+- {{BEST_PRACTICE_1}}
+- {{BEST_PRACTICE_2}}
+- {{BEST_PRACTICE_3}}
+
+## Common Issues
+
+### {{ISSUE_1_TITLE}}
+**Problem**: {{ISSUE_1_DESCRIPTION}}
+
+**Solution**: {{ISSUE_1_SOLUTION}}
+
+### {{ISSUE_2_TITLE}}
+**Problem**: {{ISSUE_2_DESCRIPTION}}
+
+**Solution**: {{ISSUE_2_SOLUTION}}
+
+## Additional Resources
+- {{RESOURCE_1}}
+- {{RESOURCE_2}}
+
+## License
+Copyright {{YEAR}} {{AUTHOR}}
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
